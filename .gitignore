@@ -1,0 +1,32 @@
+# Dépendances
+/node_modules
+**/node_modules/
+.pnp/
+.pnp.js
+
+# Build et Production
+/dist
+/build
+/.next
+/out
+
+# Cache et Logs
+.cache
+*.log
+npm-debug.log*
+.eslintcache
+.npm
+
+# Environnement
+.env*
+!.env.example
+
+# Système
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo

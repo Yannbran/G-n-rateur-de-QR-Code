@@ -1,0 +1,24 @@
+{
+  "name": "qr-generator",
+  "version": "1.0.0",
+  "description": "Une application web et Android pour générer des QR codes à partir d'URLs.",
+  "main": "src/app/page.tsx",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "^13.4.19",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "qrcode": "^1.5.3"
+  },
+  "devDependencies": {
+    "typescript": "^5.1.6",
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
+    "@types/node": "^20.5.7"
+  },
+  "license": "MIT"
+}
