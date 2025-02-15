@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, FormEvent, useEffect } from "react";
+import { useState, FormEvent, useEffect, ChangeEvent } from "react";
 import { QRData, QROptions } from "../types/qr";
 import { useDebounce } from "../hooks/useDebounce";
 
@@ -36,6 +36,29 @@ const QRForm = ({ onSubmit }: QRFormProps) => {
     e.preventDefault();
   };
 
+  const handleLogoUpload = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const image = e.target?.result as string;
+        setOptions({
+          ...options,
+          logo: {
+            image,
+            size: 25, // Taille par défaut 25%
+          },
+        });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const removeLogo = () => {
+    const { logo, ...restOptions } = options;
+    setOptions(restOptions);
+  };
+
   return (
     <form className="qr-form">
       <div className="form-group">
@@ -48,8 +71,53 @@ const QRForm = ({ onSubmit }: QRFormProps) => {
           className="url-input"
         />
       </div>
-
+      <div className="option logo-option">
+        <label>Ajouter votre logo</label>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleLogoUpload}
+          className="file-input"
+          title="Sélectionner un fichier image pour le logo"
+          placeholder="Choisir un fichier"
+        />
+        {options.logo && (
+          <>
+            <div className="logo-preview">
+              <img src={options.logo.image} alt="Logo preview" />
+              <button
+                type="button"
+                onClick={removeLogo}
+                className="remove-logo"
+              >
+                Supprimer
+              </button>
+            </div>
+            <div className="logo-size">
+              <label>Taille du logo:</label>
+              <input
+                type="range"
+                min="1"
+                max="30"
+                value={options.logo.size}
+                title="Ajuster la taille du logo"
+                onChange={(e) =>
+                  setOptions({
+                    ...options,
+                    logo: {
+                      ...options.logo,
+                      size: Number(e.target.value),
+                    },
+                  })
+                }
+              />
+              <span>{options.logo.size}%</span>
+            </div>
+          </>
+        )}
+      </div>
       <div className="form-group">
+        <label>Ajouter un texte sous le QR Code</label>
         <input
           type="text"
           value={label}

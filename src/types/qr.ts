@@ -3,6 +3,10 @@ export interface QROptions {
   color: string;
   backgroundColor: string;
   margin: number;
+  logo?: {
+    image: string;
+    size: number; // Taille en pourcentage de la largeur du QR code (1-30)
+  };
 }
 
 export type ImageFormat = "png" | "jpeg" | "webp";
