@@ -593,6 +593,61 @@ contact-form textarea:focus {
   background-color: var(--background);
 }
 
+.nav-items {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--border);
+}
+
+.social-link {
+  color: var(--text-light);
+  font-size: 1.25rem;
+  transition: all 0.3s ease;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-link:hover {
+  color: var(--primary);
+  background-color: var(--background);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .nav-content {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .nav-items {
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .social-links {
+    padding: 0.5rem 0;
+    border-left: none;
+    border-top: 2px solid var(--border);
+  }
+}
+
 @media (max-width: 768px) {
   .nav-content {
     flex-direction: column;
@@ -603,10 +658,6 @@ contact-form textarea:focus {
   .nav-links {
     width: 100%;
     justify-content: center;
-  }
-
-  .nav-link {
-    padding: 0.5rem 1rem;
   }
 
   .page-content.contact-page {
