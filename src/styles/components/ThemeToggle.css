@@ -1,0 +1,89 @@
+.theme-toggle {
+  position: relative;
+  width: 52px;
+  height: 28px;
+  background-color: var(--card-bg);
+  border: 2px solid var(--border);
+  border-radius: 30px;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  min-width: 52px; /* Empêche la déformation */
+  flex-shrink: 0; /* Empêche la réduction */
+}
+
+.toggle-icons {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 6px;
+  z-index: 1;
+}
+
+.sun-icon,
+.moon-icon {
+  font-size: 14px;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+}
+
+.toggle-thumb {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  border-radius: 50%;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  top: 2px; /* Ajustement vertical */
+}
+
+.toggle-thumb.light {
+  transform: translateX(4px);
+}
+
+.toggle-thumb.dark {
+  transform: translateX(26px);
+}
+
+@media (max-width: 768px) {
+  .theme-toggle {
+    margin: 0 auto; /* Centre le toggle en mobile */
+    width: 46px; /* Légèrement plus petit */
+    height: 24px; /* Plus petit en hauteur */
+  }
+
+  .toggle-thumb {
+    width: 16px; /* Plus petit */
+    height: 16px;
+    top: 2px;
+  }
+
+  .toggle-thumb.light {
+    transform: translateX(3px);
+  }
+
+  .toggle-thumb.dark {
+    transform: translateX(
+      31px
+    ); /* Augmenté de 25px à 27px pour mieux aligner avec la lune */
+  }
+
+  .toggle-icons {
+    padding: 0 4px; /* Réduit le padding pour un meilleur alignement */
+  }
+
+  .sun-icon,
+  .moon-icon {
+    font-size: 11px; /* Plus petites icônes */
+    width: 11px;
+    height: 11px;
+  }
+}

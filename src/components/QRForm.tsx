@@ -59,6 +59,18 @@ const QRForm = ({ onSubmit }: QRFormProps) => {
     setOptions(restOptions);
   };
 
+  const handleLogoSizeChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (options.logo && options.logo.image) {
+      setOptions({
+        ...options,
+        logo: {
+          image: options.logo.image, // On s'assure que image est défini
+          size: Number(e.target.value),
+        },
+      });
+    }
+  };
+
   return (
     <form className="qr-form">
       <div className="form-group">
@@ -99,17 +111,9 @@ const QRForm = ({ onSubmit }: QRFormProps) => {
                 type="range"
                 min="1"
                 max="30"
-                value={options.logo.size}
+                value={options.logo?.size || 25}
                 title="Ajuster la taille du logo"
-                onChange={(e) =>
-                  setOptions({
-                    ...options,
-                    logo: {
-                      ...options.logo,
-                      size: Number(e.target.value),
-                    },
-                  })
-                }
+                onChange={handleLogoSizeChange}
               />
               <span>{options.logo.size}%</span>
             </div>

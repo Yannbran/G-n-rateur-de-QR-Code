@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <main>
-      <h1>Générateur de QR Code</h1>
+      <h1>Générez votre QrCode personnalisé</h1>
       <QRGenerator />
     </main>
   );

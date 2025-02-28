@@ -1,8 +1,18 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import "../styles/layout.css";
 import type { Metadata } from "next";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import { ThemeProvider } from "../context/ThemeContext";
+import "../styles/base.css";
+import "../styles/components/Navbar.css";
+import "../styles/components/ThemeToggle.css";
+import "../styles/components/QRForm.css";
+import "../styles/components/QRPreview.css";
+import "../styles/components/Footer.css";
+import "../styles/components/Contact.css";
+import "../styles/components/About.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,13 +37,15 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        <div className="page-wrapper">
-          <Navbar />
-          <main>
-            <div className="container">{children}</div>
-          </main>
-          <Footer />
-        </div>
+        <ThemeProvider>
+          <div className="page-wrapper">
+            <Navbar />
+            <main>
+              <div className="container">{children}</div>
+            </main>
+            <Footer />
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

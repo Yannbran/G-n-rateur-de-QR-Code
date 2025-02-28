@@ -1,0 +1,138 @@
+.preview-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.qr-form {
+  background-color: var(--card-bg);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
+}
+
+.form-group {
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.url-input,
+.label-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--border);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: var(--card-bg);
+  color: var(--text);
+}
+
+.url-input:focus,
+.label-input:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+.options-group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.option {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.option label {
+  font-weight: 500;
+  color: var(--text-light);
+}
+
+.option input[type="range"] {
+  width: 100%;
+  accent-color: var(--primary);
+}
+
+.option input[type="color"] {
+  width: 100%;
+  height: 40px;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.logo-option {
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+.file-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px dashed var(--border);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  background-color: var(--card-bg);
+  color: var(--text);
+}
+
+.logo-preview {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background-color: var(--background);
+  border-radius: 0.5rem;
+}
+
+.logo-preview img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.remove-logo {
+  padding: 0.5rem 1rem;
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.remove-logo:hover {
+  background-color: #dc2626;
+}
+
+.logo-size {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .preview-container {
+    grid-template-columns: 1fr;
+  }
+
+  .options-group {
+    grid-template-columns: 1fr;
+  }
+
+  .qr-form {
+    padding: 1rem;
+  }
+}

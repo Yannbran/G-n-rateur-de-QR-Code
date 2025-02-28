@@ -9,30 +9,38 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-export async function POST(request: Request) {
+export async function POST(req: Request) {
   try {
-    const { name, email, subject, message } = await request.json();
+    const body = await req.json();
+    const { name, email, subject, message } = body;
 
-    // Envoyer l'email
-    await transporter.sendMail({
+    const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: "yann06.dev@gmail.com",
-      subject: `Contact QR Generator - ${subject}`,
-      html: `
-        <h2>Nouveau message de ${name}</h2>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Sujet:</strong> ${subject}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message.replace(/\n/g, "<br>")}</p>
+      to: process.env.EMAIL_USER,
+      subject: `Contact Form: ${subject}`,
+      text: `
+        Name: ${name}
+        Email: ${email}
+        Subject: ${subject}
+        Message: ${message}
       `,
-    });
+      html: `
+        <h3>New Contact Form Submission</h3>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Subject:</strong> ${subject}</p>
+        <p><strong>Message:</strong> ${message}</p>
+      `,
+    };
 
-    return NextResponse.json({ success: true });
-  } catch (error) {
-    console.error("Erreur lors de l'envoi de l'email:", error);
+    await transporter.sendMail(mailOptions);
+
     return NextResponse.json(
-      { error: "Erreur lors de l'envoi du message" },
-      { status: 500 }
+      { message: "Email sent successfully" },
+      { status: 200 }
     );
+  } catch (error) {
+    console.error("Error sending email:", error);
+    return NextResponse.json({ error: "Error sending email" }, { status: 500 });
   }
 }
